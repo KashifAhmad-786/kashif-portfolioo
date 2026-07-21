@@ -1,0 +1,213 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* --─ CSS Custom Properties ----------------------------------─ */
+:root {
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --accent-violet: #6C63FF;
+  --accent-cyan: #00D4FF;
+  --accent-coral: #FF6584;
+  --text-primary: #F0F0FF;
+  --text-secondary: #8888AA;
+  --border-glass: rgba(255, 255, 255, 0.07);
+  --glow-violet: rgba(108, 99, 255, 0.4);
+  --glow-cyan: rgba(0, 212, 255, 0.4);
+  --gradient-primary: linear-gradient(135deg, #6C63FF, #00D4FF);
+  --gradient-secondary: linear-gradient(135deg, #FF6584, #6C63FF);
+}
+
+/* --─ Reset & Base --------------------------------------------─ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* --─ Typography ----------------------------------------------─ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* --─ Scrollbar ------------------------------------------------ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent-violet);
+  border-radius: 99px;
+}
+
+/* --─ Selection ------------------------------------------------ */
+::selection {
+  background: rgba(108, 99, 255, 0.35);
+  color: #fff;
+}
+
+/* --─ Gradient Text -------------------------------------------- */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-coral {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --─ Glass Card ----------------------------------------------─ */
+.glass-card {
+  background: rgba(22, 22, 31, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(108, 99, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(108, 99, 255, 0.12);
+}
+
+/* --─ Glow Effects --------------------------------------------─ */
+.glow-violet { box-shadow: 0 0 30px var(--glow-violet); }
+.glow-cyan   { box-shadow: 0 0 30px var(--glow-cyan); }
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-glow:hover::after { opacity: 1; }
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px var(--glow-violet);
+}
+
+/* --─ Section Base --------------------------------------------─ */
+.section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* --─ Orb Decorations ------------------------------------------ */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: orb-float 8s ease-in-out infinite;
+}
+.orb-violet { background: var(--accent-violet); }
+.orb-cyan   { background: var(--accent-cyan); }
+.orb-coral  { background: var(--accent-coral); }
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-30px) scale(1.05); }
+}
+
+/* --─ Grid Background ------------------------------------------ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(108,99,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* --─ Shimmer Animation ---------------------------------------- */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-card) 25%, rgba(108,99,255,0.15) 50%, var(--bg-card) 75%);
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* --─ Typing Cursor -------------------------------------------- */
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+.cursor { animation: blink 1s step-end infinite; }
+
+/* --─ Timeline Line -------------------------------------------- */
+.timeline-line {
+  background: linear-gradient(to bottom, var(--accent-violet), var(--accent-cyan));
+}
+
+/* --─ Badge / Tag ---------------------------------------------- */
+.tech-badge {
+  background: rgba(108, 99, 255, 0.12);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  color: var(--accent-violet);
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.tech-badge:hover {
+  background: rgba(108, 99, 255, 0.25);
+  border-color: var(--accent-violet);
+}
+
+/* --─ Availability Pulse --------------------------------------─ */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* --─ Hover Ring ----------------------------------------------─ */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* --─ Smooth Fade-Up ------------------------------------------─ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.6s ease forwards; }
+
+/* --─ Count Up Number ------------------------------------------ */
+.counter-number {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
