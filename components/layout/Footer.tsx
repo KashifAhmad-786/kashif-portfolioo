@@ -30,8 +30,9 @@ export default function Footer() {
               Kashif Ahmad
             </span>
             <p className="text-[#8888AA] text-sm mt-1">
-            MERN Stack Developer · Lahore, Pakistan
+              MERN Stack Developer · Lahore, Pakistan
             </p>
+            <p className="text-[#8888AA] text-xs mt-1">© {year} Kashif Ahmad</p>
           </div>
 
           {/* Social icons */}

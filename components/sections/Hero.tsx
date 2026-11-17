@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { PERSONAL, METRICS } from "@/lib/data";
 import { Download, Send, ChevronDown } from "lucide-react";
@@ -67,9 +67,17 @@ function RotatingRole() {
 }
 
 /* -- Floating Badge ------------------------------------ */
-function FloatingBadge({ label, emoji, style }: { label: string; emoji: string; style: React.CSSProperties }) {
-  const delay = useMemo(() => Math.random() * 2, []);
-
+function FloatingBadge({
+  label,
+  emoji,
+  style,
+  delay = 0,
+}: {
+  label: string;
+  emoji: string;
+  style: React.CSSProperties;
+  delay?: number;
+}) {
   return (
     <motion.div
       animate={{ y: [0, -10, 0] }}
@@ -219,10 +227,10 @@ export default function Hero() {
           {/* -- Right: Avatar -- */}
           <div className="relative flex items-center justify-center">
             {/* Floating badges */}
-            <FloatingBadge label="React.js"   emoji="⚛️" style={{ top: "8%",  left: "-5%"  }} />
-            <FloatingBadge label="Node.js"    emoji="🟢" style={{ top: "15%", right: "-8%" }} />
-            <FloatingBadge label="MongoDB"    emoji="🍃" style={{ bottom: "20%", left: "-10%" }} />
-            <FloatingBadge label="Next.js"    emoji="▲"  style={{ bottom: "10%", right: "-5%"  }} />
+            <FloatingBadge label="React.js" emoji="⚛️" style={{ top: "8%", left: "-5%" }} delay={0.4} />
+            <FloatingBadge label="Node.js" emoji="🟢" style={{ top: "15%", right: "-8%" }} delay={0.9} />
+            <FloatingBadge label="MongoDB" emoji="🍃" style={{ bottom: "20%", left: "-10%" }} delay={1.3} />
+            <FloatingBadge label="Next.js" emoji="▲" style={{ bottom: "10%", right: "-5%" }} delay={1.7} />
 
             {/* Spinning ring */}
             <motion.div
